@@ -22,7 +22,7 @@ eureka:
   password: password
   instance:
     hostname: ${DOMAIN_NAME:localhost}
-    nonSecurePort: 80
+    non-secure-port: 80
   client:
     fetchRegistry: true
     register-with-eureka: true
