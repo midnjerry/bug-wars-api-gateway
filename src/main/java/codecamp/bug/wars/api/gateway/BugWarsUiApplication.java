@@ -21,12 +21,15 @@ public class BugWarsUiApplication {
     @Value("${eureka.instance.hostname:}")
     String hostname;
 
-    @Value("${eureka.client.serviceUrl.defaultZone:")
+    @Value("${eureka.client.serviceUrl.defaultZone:}")
     String eurekaUrl;
+
+    @Value("${spring.profiles.active:default}")
+    String profile;
 
     @GetMapping
     public String getIndex() {
-        return "Bug Wars API Gateway: " + hostname + ":" + eurekaUrl;
+        return "Bug Wars API Gateway: " + hostname + ":" + eurekaUrl + " Profile: " + profile;
     }
 
 }
