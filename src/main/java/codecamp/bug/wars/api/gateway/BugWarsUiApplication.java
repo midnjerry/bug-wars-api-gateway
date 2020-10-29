@@ -8,6 +8,8 @@ import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Arrays;
+
 @SpringBootApplication
 @EnableZuulProxy
 @EnableEurekaClient
@@ -27,9 +29,18 @@ public class BugWarsUiApplication {
     @Value("${spring.profiles.active:default}")
     String profile;
 
+    @Value("${domain.name:}")
+    String domainName;
+
     @GetMapping
     public String getIndex() {
-        return "Bug Wars API Gateway: " + hostname + ":" + eurekaUrl + " Profile: " + profile;
+        return String.join("<BR>", Arrays.asList(
+                "Bug Wars API Gateway",
+                "Hostname: " + hostname,
+                "Eureka hostname; " + eurekaUrl,
+                "Spring Profile: " + profile,
+                "DOMAIN NAME: " + domainName
+        ));
     }
 
 }
