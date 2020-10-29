@@ -21,18 +21,13 @@ zuul:
 eureka:
   password: password
   instance:
-    hostname: localhost
+    hostname: ${DOMAIN_NAME:localhost}
+    nonSecurePort: 80
   client:
     fetchRegistry: true
     register-with-eureka: true
     serviceUrl:
       defaultZone: ${EUREKA_URL:http://user:password@localhost:8761}/eureka/
 
----
-spring.profiles: cloud
-eureka:
-  instance:
-    hostname: ${DOMAIN_NAME}
-    nonSecurePort: 80
 
 
