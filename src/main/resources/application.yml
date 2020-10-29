@@ -18,32 +18,21 @@ zuul:
       path: /**
       serviceId: bug-wars-ai-crud
 
----
-spring.profiles: cloud
-eureka:
-  password: password
-  instance:
-    hostname: ${DOMAIN_NAME}
-    nonSecurePort: 80
-  client:
-    fetchRegistry: true
-    register-with-eureka: true
-    serviceUrl:
-      defaultZone: ${EUREKA_URL:http://user:password@localhost:8761}/eureka/
-
-
-  # you call POST localhost:8080/api/ai/**
-  # it gets redirect to:
-  # localhost:8082/ai/**
----
-spring.profiles: local, default
 eureka:
   password: password
   instance:
     hostname: localhost
   client:
     fetchRegistry: true
+    register-with-eureka: true
     serviceUrl:
-      defaultZone: http://user:${eureka.password}@${eureka.instance.hostname}:8761/eureka/
+      defaultZone: ${EUREKA_URL:http://user:password@localhost:8761}/eureka/
+
+---
+spring.profiles: cloud
+eureka:
+  instance:
+    hostname: ${DOMAIN_NAME}
+    nonSecurePort: 80
 
 
