@@ -14,17 +14,14 @@ import java.util.Arrays;
 @EnableZuulProxy
 @EnableEurekaClient
 @RestController
-public class BugWarsUiApplication {
+public class BugWarsApiGatewayApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(BugWarsUiApplication.class, args);
+        SpringApplication.run(BugWarsApiGatewayApplication.class, args);
     }
 
     @Value("${eureka.instance.hostname:}")
     String hostname;
-
-    @Value("${eureka.client.serviceUrl.defaultZone:}")
-    String eurekaUrl;
 
     @Value("${spring.profiles.active:default}")
     String profile;
@@ -37,7 +34,6 @@ public class BugWarsUiApplication {
         return String.join("<BR>", Arrays.asList(
                 "Bug Wars API Gateway",
                 "Hostname: " + hostname,
-                "Eureka hostname; " + eurekaUrl,
                 "Spring Profile: " + profile,
                 "DOMAIN NAME: " + domainName
         ));

@@ -18,8 +18,10 @@ zuul:
       path: /**
       serviceId: bug-wars-ai-crud
 
+# To setup with Heroku
+# https://stackoverflow.com/questions/60414630/problem-with-unknown-ports-on-spring-eureka-client-registration
+
 eureka:
-  password: password
   instance:
     hostname: ${DOMAIN_NAME:localhost}
     non-secure-port: 80
@@ -27,7 +29,7 @@ eureka:
     fetchRegistry: true
     register-with-eureka: true
     serviceUrl:
-      defaultZone: ${EUREKA_URL:http://user:password@localhost:8761}/eureka/
+      defaultZone: ${EUREKA_URL:http://localhost:8761}/eureka/
 
 
 
