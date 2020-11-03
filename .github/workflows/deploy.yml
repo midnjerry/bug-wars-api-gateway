@@ -1,0 +1,43 @@
+name: Deploy API Gateway
+
+# Trigger the workflow when there is a push to main
+on:
+  push:
+    branches: [ main ]
+
+# What to do when triggered
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Setup JDK
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+
+      - name: Cache local Maven repository
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-maven-
+
+        #Build and run test fro Spring Boot
+      - name: Build Sprint Boot Project with Maven
+        run: mvn -B package --file pom.xml
+
+      - name: Login to Heroku
+          uses: akhileshns/heroku-deploy@v3.5.7 # This is the action
+          with:
+            heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+            heroku_app_name: "bug-wars-api-gateway"
+            heroku_email: "jerry.codecamp@gmail.com"
+            justlogin: true
+            - name: Deploy to Heroku
+              run: |
+                heroku plugins:install java
+                heroku deploy:jar target/bug-wars-api-gateway-0.0.1-SNAPSHOT --app bug-wars
