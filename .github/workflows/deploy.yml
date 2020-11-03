@@ -37,7 +37,8 @@ jobs:
           heroku_app_name: "bug-wars-api-gateway"
           heroku_email: "jerry.codecamp@gmail.com"
           justlogin: true
-          - name: Deploy to Heroku
-            run: |
-              heroku plugins:install java
-              heroku deploy:jar target/bug-wars-api-gateway-0.0.1-SNAPSHOT --app bug-wars-api-gateway
+
+      - name: Deploy to Heroku
+        run: |
+          heroku plugins:install java
+          heroku deploy:jar target/bug-wars-api-gateway-0.0.1-SNAPSHOT --app bug-wars-api-gateway
