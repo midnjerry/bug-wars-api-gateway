@@ -20,7 +20,6 @@ zuul:
       # Redirected to: bug-wars-ai-crud + /ai/**  where  ** = /rest/Of/Path
       path: /**
       serviceId: bug-wars-ai-crud
-
     games:
       path: /**
       serviceId: bug-wars-game-engine
