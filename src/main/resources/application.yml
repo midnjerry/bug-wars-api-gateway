@@ -10,6 +10,9 @@ zuul:
     socket-timeout-millis: 5000000
   # Service will be mapped under the /api URI
   # By default it is stripped
+#  when you're accessing the game engine directly, the url endpoint is http://bug-wars-game-engine.herokuapp.com/games
+#  the url endpoint to be taken to, is http://bug-wars-api-gateway.herokuapp.com/api/games
+
   prefix: /api
   routes:
     # This is the capture point:  host + /api + /ai + /rest/Of/Path
@@ -17,6 +20,9 @@ zuul:
       # Redirected to: bug-wars-ai-crud + /ai/**  where  ** = /rest/Of/Path
       path: /**
       serviceId: bug-wars-ai-crud
+    games:
+      path: /**
+      serviceId: bug-wars-game-engine
 
 # To setup with Heroku
 # https://stackoverflow.com/questions/60414630/problem-with-unknown-ports-on-spring-eureka-client-registration
