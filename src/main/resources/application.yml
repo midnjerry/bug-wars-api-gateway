@@ -1,29 +1,17 @@
 server.port: ${PORT:8081}
 
-# This is zuul configuration.
-# For a good description of Zuul in general: https://howtodoinjava.com/spring-cloud/spring-cloud-api-gateway-zuul/
-# For a good reference manual for application.yml: https://cloud.spring.io/spring-cloud-netflix/multi/multi__router_and_filter_zuul.html
 zuul:
   host:
-    # Wait 5000 seconds for timeout - Heroku needs time to spin up services on startup.
     connect-timeout-millis: 5000000
     socket-timeout-millis: 5000000
-  # Service will be mapped under the /api URI
-  # By default it is stripped
-#  when you're accessing the game engine directly, the url endpoint is http://bug-wars-game-engine.herokuapp.com/games
-#  the url endpoint to be taken to, is http://bug-wars-api-gateway.herokuapp.com/api/games
-
-  prefix:  /api
+  prefix: /api
   routes:
     ai:
-      path: /**
+      path: /ai/**
       serviceId: bug-wars-ai-crud
     games:
-      path: /**
+      path: /games/**
       serviceId: bug-wars-game-engine
-
-# To setup with Heroku
-# https://stackoverflow.com/questions/60414630/problem-with-unknown-ports-on-spring-eureka-client-registration
 
 eureka:
   instance:
@@ -31,9 +19,13 @@ eureka:
     non-secure-port: 80
   client:
     fetchRegistry: true
-    register-with-eureka: false
+    register-with-eureka: true
     serviceUrl:
       defaultZone: ${EUREKA_URL:http://localhost:8761}/eureka/
 
 
-
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
