@@ -13,7 +13,7 @@ zuul:
 #  when you're accessing the game engine directly, the url endpoint is http://bug-wars-game-engine.herokuapp.com/games
 #  the url endpoint to be taken to, is http://bug-wars-api-gateway.herokuapp.com/api/games
 
-  prefix: /api
+  prefix:  /api
   routes:
     ai:
       path: /**
