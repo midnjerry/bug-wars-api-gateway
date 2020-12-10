@@ -9,9 +9,11 @@ zuul:
     ai:
       path: /ai/**
       serviceId: bug-wars-ai-crud
+      strip-prefix: false
     games:
       path: /games/**
       serviceId: bug-wars-game-engine
+      strip-prefix: false
 
 eureka:
   instance:
