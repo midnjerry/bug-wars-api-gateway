@@ -16,10 +16,10 @@ zuul:
   prefix: /api
   routes:
     ai:
-      path: /ai/**
+      path: /**
       serviceId: bug-wars-ai-crud
     games:
-      path: /games/**
+      path: /**
       serviceId: bug-wars-game-engine
 
 # To setup with Heroku
