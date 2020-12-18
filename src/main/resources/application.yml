@@ -15,6 +15,9 @@ zuul:
       serviceId: bug-wars-game-engine
       strip-prefix: false
 
+ribbon:
+  ReadTimeout: 600000
+
 eureka:
   instance:
     hostname: ${DOMAIN_NAME:localhost}
